@@ -22,7 +22,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "./client/build")));
 
 //static files
 app.use(express.static(path.join(__dirname, "./client/build")));
@@ -36,10 +35,10 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// //rest api
-// app.use("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index,html"));
-// });
+//rest api
+app.use("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index,html"));
+});
 
 //PORT
 const PORT = process.env.PORT || 8080;

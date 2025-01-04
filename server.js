@@ -7,7 +7,12 @@ import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
-import path, { dirname } from "path";
+import path, { __dirname } from "path";
+import { fileURLToPath } from "url";
+
+//chatgpt
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //configure env
 dotenv.config();
@@ -31,13 +36,9 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
 //rest api
 app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index,html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 //PORT
